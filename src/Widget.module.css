@@ -1,0 +1,98 @@
+/* Scoped reset to affect only elements inside the widget container */
+.myWidget-container * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Styling for the widget container */
+.myWidget-container {
+  position: fixed;
+  bottom: 10px;
+  left: 10px; /* Positioning to the right for visual consistency */
+  display: flex;
+  align-items: center;
+  border-radius: 4px 4px 4px 4px; /* Round top left and bottom left corners */
+  z-index: 1001; /* Ensuring the container is above other elements */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+}
+
+.myWidget-icon  {
+  padding-right: 10px;
+}
+
+/* Style for the action button */
+.myWidget-actionButton {
+  padding: 10px 20px; /* Match padding for alignment */
+  cursor: pointer;
+  border: none;
+  height: 40px;
+  background: #007bff; /* Consistent background for all states */
+  color: white;
+  font-size: 16px;
+  border-radius: 4px 0 0 4px; /* Round top left and bottom left corners */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for action button */
+.myWidget-actionButton:hover {
+  background: #0056b3; /* Darker shade on hover */
+}
+
+/* Style for the language button to appear connected to the action button */
+.myWidget-languageButton {
+  padding: 10px 10px; /* Match padding for alignment */
+  cursor: pointer;
+  border: none;
+  height: 40px;
+  background: #007bff; /* Match the action button background */
+  border-radius: 0 4px 4px 0; /* Round top right and bottom right corners */
+  margin-left: -1px; /* Overlap the border to create a "separator" effect */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content */
+  position: relative; /* Needed for absolute positioning the separator */
+  box-shadow: -1px 0 0 0 rgba(255, 255, 255, 0.5); /* Faint line as separator */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for language button */
+.myWidget-languageButton:hover {
+  background: #0056b3; /* Darker shade on hover */
+}
+
+/* Style for the language icon */
+.myWidget-languageIcon {
+  width: 16px; /* Your desired size */
+  height: 16px; /* Your desired size */
+  filter: invert(1); /* Invert the color to white */
+}
+
+.myWidget-actionButtonText {
+  flex-grow: 1; /* Allows the text to take up available space */
+  text-align: center; /* Center the text */
+}
+
+/* Ensure language selector is initially hidden and positioned directly above the action button */
+.myWidget-language-selector {
+  display: none;
+  position: absolute;
+  bottom: 50px; /* Adjust as needed to position right above the action button */
+  left: 50%; /* Start from the center of the action button */
+  transform: translateX(40%); /* Center align the dropdown with respect to the action button */
+  padding: 10px 5px;
+  z-index: 1002; /* Above the buttons */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for visible language selector */
+.myWidget-language-selector.visible {
+  display: block;
+}
+
