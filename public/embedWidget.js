@@ -5,7 +5,7 @@
     document.body.appendChild(widgetContainer);
 
     // Fetch the asset manifest from the correct path
-    fetch('/build/asset-manifest.json') // Update with the correct path
+    fetch('asset-manifest.json') // Update with the correct path
     .then(function(response) {
         return response.json();
     })
