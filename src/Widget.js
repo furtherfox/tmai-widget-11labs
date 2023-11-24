@@ -25,6 +25,12 @@ const Widget = () => {
   };
 
   const handlePlayClick = () => {
+      // Reset audio player for a new stream
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current.src = '';
+    }
     setIsLoading(true);
 
     if (!socketRef.current || socketRef.current.disconnected) {
