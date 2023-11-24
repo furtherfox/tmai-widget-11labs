@@ -13,7 +13,7 @@
 
     // Append JavaScript
     var script = document.createElement('script');
-    script.src = 'https://tmai-widget.vercel.app/static/js/main.b0d65869.js';
+    script.src = 'https://tmai-widget.vercel.app/static/js/main.0b046156.js';
     script.async = true;
     document.body.appendChild(script);
 })();

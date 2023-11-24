@@ -10,6 +10,7 @@ import styles from './Widget.module.css';
 
 const Widget = () => {
   const [language, setLanguage] = useState('en-US');
+  const [voiceId, setVoiceId] = useState('1');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef(null);
@@ -44,7 +45,7 @@ const Widget = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ content: contentToSend, language }),
+          body: JSON.stringify({ content: contentToSend, language, voiceId }), 
         })
         .then(response => {
           const mediaSource = new MediaSource();
