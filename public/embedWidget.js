@@ -4,19 +4,22 @@
     widgetContainer.id = 'widget-root'; // Use a unique ID
     document.body.appendChild(widgetContainer);
 
-    // Fetch the asset manifest from the correct path (inside the "build" folder)
+    // Fetch the asset manifest from the correct path
     fetch('/build/asset-manifest.json') // Update with the correct path
     .then(function(response) {
         return response.json();
     })
     .then(function(data) {
         // Get the actual filenames for CSS and JavaScript from the manifest
-        var cssFilename = data.files['main.css'];
-        var jsFilename = data.files['main.js'];
+        var cssFilename = data['static/css/main.6d0d6734.css'];
+        var jsFilename = data['static/js/main.c795ef59.js'];
+
+        // Base URL for your assets
+        var baseUrl = 'https://tmai-widget.vercel.app/';
 
         // Construct the URLs with the retrieved filenames
-        var cssUrl = 'https://tmai-widget.vercel.app' + cssFilename;
-        var jsUrl = 'https://tmai-widget.vercel.app' + jsFilename;
+        var cssUrl = baseUrl + cssFilename;
+        var jsUrl = baseUrl + jsFilename;
 
         // Append CSS
         var css = document.createElement('link');
