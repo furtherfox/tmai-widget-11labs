@@ -15,6 +15,8 @@
   border-radius: 4px 4px 4px 4px; /* Round top left and bottom left corners */
   z-index: 1001; /* Ensuring the container is above other elements */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+  justify-content: flex-start; /* Aligns children to the start of the container */
+
 }
 
 .myWidget-icon  {
@@ -76,13 +78,15 @@
   text-align: center; /* Center the text */
 }
 
-/* Ensure language selector is initially hidden and positioned directly above the action button */
-.myWidget-language-selector {
-  display: none;
+
+/* Style for visible language selector */
+.myWidget-language-selector.visible {
+  display: block;
   position: absolute;
-  bottom: 50px; /* Adjust as needed to position right above the action button */
-  left: 50%; /* Start from the center of the action button */
-  transform: translateX(40%); /* Center align the dropdown with respect to the action button */
+  bottom: 100%; /* Position the selector above the container */
+  left: 5px; /* Align with the left edge of the container */
+  margin-bottom: 10px; /* Spacing between the selector and the container */
+  margin-left: 100px; /* Adjust this to the width of the language selector */
   padding: 10px 5px;
   z-index: 1002; /* Above the buttons */
   background-color: white;
@@ -91,8 +95,27 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Style for visible language selector */
-.myWidget-language-selector.visible {
+/* Style for visible voice selector */
+.myWidget-voice-selector.visible {
   display: block;
+  position: absolute;
+  bottom: 100%; /* Position the selector above the container */
+  left: 0px; /* Align with the left edge of the container */
+  margin-bottom: 10px; /* Spacing between the selector and the container */
+  padding: 10px 5px;
+  z-index: 1002; /* Above the buttons */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+/* Hide the widget on mobile devices */
+@media screen and (max-width: 768px) {
+  .myWidget-container {
+    display: none;
+  }
+}
+
+
 

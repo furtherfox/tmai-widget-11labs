@@ -5,25 +5,25 @@ import ActionButton from './ActionButton';
 import LanguageButton from './LanguageButton';
 import AudioPlayer from './AudioPlayer';
 import LanguageSelector from './LanguageSelector';
+import VoiceSelector from './VoiceSelector';
 import styles from './Widget.module.css';
 
-
 const Widget = () => {
+  const [voiceId, setVoiceId] = useState('XrExE9yKIg1WjnnlVkGX');
   const [language, setLanguage] = useState('en-US');
-  const [voiceId, setVoiceId] = useState('1');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef(null);
   const socketRef = useRef(null);
-  
 
   const [showLanguageSelector, setShowLanguageSelector] = useState(false);
   const languageSelectorRef = useRef(null);
-
+  const voiceSelectorRef = useRef(null); // Ref for the voice selector
 
   const toggleLanguageSelector = () => {
-    setShowLanguageSelector(!showLanguageSelector);
-  };
+    setShowLanguageSelector(currentShow => !currentShow);
+  };  
+
 
   const handlePlayClick = () => {
       // Reset audio player for a new stream
@@ -92,13 +92,24 @@ const Widget = () => {
       audioRef.current.src = '';
     }
     if (socketRef.current && socketRef.current.connected) {
-      socketRef.current.emit('stop_tts');
+      socketRef.current.emit('stop_tts'); // Emit "stop_tts" event to the server
       socketRef.current.disconnect();
     }
     setIsPlaying(false);
     setIsLoading(false);
+  
+    // Remove the SourceBuffer from the MediaSource and close the MediaSource
+    if (audioRef.current && audioRef.current.srcObject) {
+      const mediaSource = audioRef.current.srcObject;
+      const sourceBuffer = mediaSource.sourceBuffers[0];
+      if (sourceBuffer) {
+        sourceBuffer.abort(); // Abort the SourceBuffer
+        mediaSource.removeSourceBuffer(sourceBuffer);
+      }
+      mediaSource.endOfStream(); // End the MediaSource
+    }
   };
-
+  
   const handleActionClick = () => {
     if (isLoading) return; // Prevent action when loading
     isPlaying ? handleStopClick() : handlePlayClick();
@@ -130,10 +141,13 @@ const Widget = () => {
     };
   }, []);
 
-  // Event listener to close language selector if clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (showLanguageSelector && languageSelectorRef.current && !languageSelectorRef.current.contains(event.target)) {
+      if (showLanguageSelector && 
+          languageSelectorRef.current && 
+          !languageSelectorRef.current.contains(event.target) &&
+          voiceSelectorRef.current && 
+          !voiceSelectorRef.current.contains(event.target)) {
         setShowLanguageSelector(false);
       }
     };
@@ -142,8 +156,8 @@ const Widget = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [showLanguageSelector]);  
-
+  }, [showLanguageSelector]);
+  
 
   return (
     <div className={styles['myWidget-container']}>
@@ -153,16 +167,24 @@ const Widget = () => {
       />
       <LanguageButton onClick={toggleLanguageSelector} />
       {showLanguageSelector && (
-        <LanguageSelector
-          ref={languageSelectorRef}
-          language={language}
-          setLanguage={setLanguage}
-          isVisible={showLanguageSelector}
-        />
+        <>
+          <VoiceSelector
+            ref={voiceSelectorRef}
+            voiceId={voiceId}
+            setVoiceId={setVoiceId}
+            isVisible={showLanguageSelector}
+          />
+          <LanguageSelector
+            ref={languageSelectorRef}
+            language={language}
+            setLanguage={setLanguage}
+            isVisible={showLanguageSelector}
+          />
+        </>
       )}
       <AudioPlayer ref={audioRef} />
     </div>
-  );
-      }  
+  );  
+};
 
 export default Widget;
