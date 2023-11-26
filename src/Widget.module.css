@@ -107,6 +107,7 @@
   left: 0px; /* Align with the left edge of the container */
   margin-bottom: 10px; /* Spacing between the selector and the container */
   padding: 5px 5px;
+  width: 80px;
   z-index: 10002; /* Above the buttons */
   background-color: white;
   border: 1px solid #ccc;
