@@ -13,19 +13,19 @@
   display: flex;
   align-items: center;
   border-radius: 4px 4px 4px 4px; /* Round top left and bottom left corners */
-  z-index: 1001; /* Ensuring the container is above other elements */
+  z-index: 10001; /* Ensuring the container is above other elements */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
   justify-content: flex-start; /* Aligns children to the start of the container */
 
 }
 
 .myWidget-icon  {
-  padding-right: 10px;
+  padding-right: 6px;
 }
 
 /* Style for the action button */
 .myWidget-actionButton {
-  padding: 10px 20px; /* Match padding for alignment */
+  padding: 10px 10px; /* Match padding for alignment */
   cursor: pointer;
   border: none;
   height: 40px;
@@ -68,14 +68,15 @@
 
 /* Style for the language icon */
 .myWidget-languageIcon {
-  width: 16px; /* Your desired size */
-  height: 16px; /* Your desired size */
+  width: 18px; /* Your desired size */
+  height: 18px; /* Your desired size */
   filter: invert(1); /* Invert the color to white */
 }
 
 .myWidget-actionButtonText {
   flex-grow: 1; /* Allows the text to take up available space */
-  text-align: center; /* Center the text */
+  text-align: left; /* Center the text */
+  margin-right: 5px; /* Adjust this to the width of the language selector */
 }
 
 
@@ -84,11 +85,12 @@
   display: block;
   position: absolute;
   bottom: 100%; /* Position the selector above the container */
-  left: 5px; /* Align with the left edge of the container */
+  left: 0px; /* Align with the left edge of the container */
   margin-bottom: 10px; /* Spacing between the selector and the container */
-  margin-left: 100px; /* Adjust this to the width of the language selector */
-  padding: 10px 5px;
-  z-index: 1002; /* Above the buttons */
+  margin-left: 90px; /* Adjust this to the width of the language selector */
+  width: 85px;
+  padding: 5px 5px;
+  z-index: 10002; /* Above the buttons */
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -102,8 +104,8 @@
   bottom: 100%; /* Position the selector above the container */
   left: 0px; /* Align with the left edge of the container */
   margin-bottom: 10px; /* Spacing between the selector and the container */
-  padding: 10px 5px;
-  z-index: 1002; /* Above the buttons */
+  padding: 5px 5px;
+  z-index: 10002; /* Above the buttons */
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -117,5 +119,23 @@
   }
 }
 
+/* Original Styling for the action and language buttons */
+.myWidget-actionButton, .myWidget-languageButton {
+  background: linear-gradient(to bottom, #0090ff 0%, #007bff 100%); /* Subtle gradient from lighter to standard blue */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
 
+/* Hover effect for action and language buttons */
+.myWidget-actionButton:hover, .myWidget-languageButton:hover {
+  background: linear-gradient(to bottom, #003d99 0%, #0056b3 100%); /* Gradient for hover effect */
+}
 
+/* Subtle inner shadow for depth */
+.myWidget-actionButton, .myWidget-languageButton {
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Separator between buttons */
+.myWidget-languageButton {
+  box-shadow: -1px 0 0 0 rgba(255, 255, 255, 0.4); /* Subtle separator */
+}
