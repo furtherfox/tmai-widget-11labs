@@ -19,9 +19,13 @@
 
 }
 
-.myWidget-icon  {
+.myWidgetIcon {
   padding-right: 6px;
+  width: 16px;
+  height: 16px;
 }
+
+
 
 /* Style for the action button */
 .myWidget-actionButton {
