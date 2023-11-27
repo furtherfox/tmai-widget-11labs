@@ -125,7 +125,28 @@ const Widget = () => {
 
   useEffect(() => {
     const audioElement = audioRef.current;
-    const handleAudioEnd = () => setIsPlaying(false);
+
+    // Updated handleAudioEnd function
+    const handleAudioEnd = () => {
+      setIsPlaying(false);
+      setIsLoading(false);
+
+      // Reset the audio player
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        audioRef.current.src = '';
+      }
+
+      // Disconnect the socket
+      if (socketRef.current && socketRef.current.connected) {
+        socketRef.current.disconnect();
+      }
+
+      // Reset the language and voiceId if needed
+      // setLanguage('en-US'); // Uncomment if you want to reset the language
+      // setVoiceId('defaultVoiceId'); // Uncomment and replace with default voice ID if you want to reset the voice
+    };
 
     if (audioElement) {
       audioElement.addEventListener('ended', handleAudioEnd);
