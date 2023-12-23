@@ -22,7 +22,7 @@
     document.body.appendChild(widgetContainer);
 
     // Fetch the asset manifest
-    fetch('https://tmai-widget.vercel.app/asset-manifest.json')
+    fetch('https://tmai-widget-11labs.vercel.app/asset-manifest.json')
     .then(function(response) {
         return response.json();
     })
@@ -32,7 +32,7 @@
         var jsFilename = data.files['main.js'];
 
         // Base URL for your assets
-        var baseUrl = 'https://tmai-widget.vercel.app/';
+        var baseUrl = 'https://tmai-widget-11labs.vercel.app/';
 
         // Construct the URLs with the retrieved filenames
         var cssUrl = baseUrl + cssFilename;
