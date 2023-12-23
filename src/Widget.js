@@ -62,12 +62,12 @@ const Widget = () => {
   setIsLoading(true);
 
   if (!socketRef.current || socketRef.current.disconnected) {
-    socketRef.current = io('https://safe-cliffs-13661-626ee06bf1b6.herokuapp.com/', { transports: ['websocket'] });
+    socketRef.current = io('https://tmai-server-11labs.herokuapp.com/', { transports: ['websocket'] });
 
     socketRef.current.on('connect', () => {
       const contentToSend = document.documentElement.innerText;
 
-      fetch('https://safe-cliffs-13661-626ee06bf1b6.herokuapp.com/generate_audio', {
+      fetch('https://tmai-server-11labs.herokuapp.com/generate_audio', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
