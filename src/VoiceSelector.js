@@ -4,9 +4,10 @@ import styles from './Widget.module.css';
 // Define the voices array inside VoiceSelector.js
 const voices = [
   { id: 'XrExE9yKIg1WjnnlVkGX', name: 'Matilda' },
-  { id: 'xSywKAWK7DJUmLzTe9mp', name: 'Delilah' },
-  { id: 'Dpt4AYuZnND49w3UfMvh', name: 'Neal' },
+  { id: 'B39o9n11VEQdOhIebqpm', name: 'Natasha' },
+  { id: 'IGH6ygtP7uvv4Q0FHddh', name: 'Katie' },
   { id: 'J8E3IZ0bgZbqMSMfIcez', name: 'Henry' },
+
   // Add more voices as needed
 ];
 

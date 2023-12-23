@@ -1,7 +1,24 @@
 (function() {
-    // Create a new container for the widget
+    // Function to extract query parameters from the script src
+    function getQueryParam(param) {
+        var script = document.currentScript || document.scripts[document.scripts.length - 1];
+        var url = new URL(script.src);
+        return url.searchParams.get(param);
+    }
+
+    var token = getQueryParam('token');
+    var defaultLanguage = getQueryParam('default_language') || 'English';
+    var defaultVoice = getQueryParam('default_voice') || 'XrExE9yKIg1WjnnlVkGX';
+    var placement = getQueryParam('placement') || 'left';
+
+
+    // Create a container for the widget
     var widgetContainer = document.createElement('div');
-    widgetContainer.id = 'widget-root'; // Use a unique ID
+    widgetContainer.id = 'widget-root';
+    widgetContainer.setAttribute('data-token', token); // Store the token as a data attribute
+    widgetContainer.setAttribute('data-default-language', defaultLanguage);
+    widgetContainer.setAttribute('data-default-voice', defaultVoice);
+
     document.body.appendChild(widgetContainer);
 
     // Fetch the asset manifest
@@ -15,7 +32,7 @@
         var jsFilename = data.files['main.js'];
 
         // Base URL for your assets
-        var baseUrl = 'https://tmai-widget.vercel.app';
+        var baseUrl = 'https://tmai-widget.vercel.app/';
 
         // Construct the URLs with the retrieved filenames
         var cssUrl = baseUrl + cssFilename;

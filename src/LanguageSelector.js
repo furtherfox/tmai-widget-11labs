@@ -9,15 +9,15 @@ const LanguageSelector = React.forwardRef(({ language, setLanguage, isVisible },
     value={language}
     onChange={(e) => setLanguage(e.target.value)}
   >
-    <option value="en-US">English</option>
-    <option value="es-ES">Spanish</option>
-    <option value="fr-FR">French</option>
-    <option value="de-DE">German</option>
-    <option value="pl-PL">Polish</option>
-    <option value="it-IT">Italian</option>
-    <option value="pt-PT">Portuguese</option>
-    <option value="hi-IN">Hindi</option>
-    <option value="ar-AR">Arabic</option>
+    <option value="English">English</option>
+    <option value="Spanish">Spanish</option>
+    <option value="French">French</option>
+    <option value="German">German</option>
+    <option value="Polish">Polish</option>
+    <option value="Italian">Italian</option>
+    <option value="Portuguese">Portuguese</option>
+    <option value="Hindi">Hindi</option>
+    <option value="Arabic">Arabic</option>
   </select>
 ));
 
